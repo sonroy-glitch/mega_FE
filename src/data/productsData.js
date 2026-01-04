@@ -81,7 +81,7 @@ const products = [
   {
     id: 4,
     name: "2×2 WD Advanced High-Power Sand Rover Kit (ESC Powered | Li-Po Based Platform)",
-    price: "₹3979.00",
+    price: "₹4939.00",
     image: img4,
     category: "diy_kits",
     description:
