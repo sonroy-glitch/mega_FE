@@ -41,15 +41,6 @@ export const members = [
     linkedin: "https://www.linkedin.com/in/amrutanshu-nanda/",
   },
   {
-    id: 4,
-    name: "Rehyan Yadav",
-    role: "Web Lead",
-    quote:
-      "Building seamless digital experiences to connect our innovations with the world.",
-    image: m4,
-    linkedin: "https://www.linkedin.com/in/rehyanyaduvanshi/",
-  },
-  {
     id: 5,
     name: "Sujal Krishna",
     role: "Logistics Head",
@@ -89,7 +80,7 @@ export const members = [
     name: "Tanmay Das",
     role: "Member",
     quote:
-      "Mai to chutiya hoon",
+      "Together, we innovate, collaborate, and push the boundaries of robotics and technology.",
     image: m9,
     linkedin:
       "https://www.linkedin.com/in/tanmoy-das-336234330/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
@@ -121,5 +112,14 @@ export const members = [
     image: m12,
     linkedin:
       "https://www.linkedin.com/in/tushar-ojha-951519285/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+  },
+  {
+    id: 4,
+    name: "Rehyan Yadav",
+    role: "Member",
+    quote:
+      "Building seamless digital experiences to connect our innovations with the world.",
+    image: m4,
+    linkedin: "https://www.linkedin.com/in/rehyanyaduvanshi/",
   },
 ];
