@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
 import axios from 'axios';
-import {CircleLoader} from 'react-spinners' 
+import { CircleLoader } from 'react-spinners';
 import {
   Plus,
   Minus,
@@ -19,18 +19,19 @@ export default function Cart() {
   const { cartItems, increaseQty, decreaseQty, clearCart } = useCart();
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [check, setCheck] = useState(true);
+  const [paymentLoader, setPaymentLoader] = useState(false);
 
   const total = cartItems.reduce(
     (sum, i) => sum + parseInt(i.price.replace("₹", "")) * i.qty,
     0
   );
-  const [paymentLoader,setPaymentLoader]=useState(False)
+
   const upiId = 'megahertzrobotics@ybl';
   const upiLink = `upi://pay?pa=${upiId}&pn=MegahertzRobotics&am=${total}&cu=INR`;
   const qrUrl = `https://quickchart.io/qr?text=${encodeURIComponent(upiLink)}&size=300`;
 
   async function checkout() {
-    setPaymentLoader(true)
+    setPaymentLoader(true);
     const user = JSON.parse(localStorage.getItem('user'));
     const cart = localStorage.getItem('megahertz_cart');
 
@@ -50,7 +51,7 @@ export default function Cart() {
         console.error("Order creation failed", error);
         window.location.href = upiLink;
       }
-      setPaymentLoader(false)
+      setPaymentLoader(false);
     } else {
       setIsCheckoutOpen(true);
       
@@ -65,7 +66,7 @@ export default function Cart() {
       } catch (error) {
         console.error("Verification failed", error);
       }
-      setPaymentLoader(false)
+      setPaymentLoader(false);
     }
   }
 
@@ -189,22 +190,22 @@ export default function Cart() {
                   className="w-full group relative px-6 py-4 bg-yellow-500 text-black uppercase tracking-wider rounded-xl overflow-hidden hover:shadow-[0_0_20px_-5px_rgba(234,179,8,0.5)] transition-all duration-300" 
                   onClick={checkout}
                 >
-                  {
-            paymentLoader?
-            <CircleLoader size={20}/>:
-               <span className="relative z-10 flex items-center justify-center gap-2">
-                    Checkout Securely{" "}
-                    <ArrowRight
-                      size={18}
-                      className="group-hover:translate-x-1 transition-transform"
-                    />
-                  </span>
-          }
-          
-
-                 
-
-                  <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                  {paymentLoader ? (
+                    <div className="flex justify-center items-center w-full">
+                       <CircleLoader size={24} color="#000000" />
+                    </div>
+                  ) : (
+                    <>
+                      <span className="relative z-10 flex items-center justify-center gap-2">
+                        Checkout Securely{" "}
+                        <ArrowRight
+                          size={18}
+                          className="group-hover:translate-x-1 transition-transform"
+                        />
+                      </span>
+                      <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                    </>
+                  )}
                 </button>
 
                 <div className="mt-4 flex items-center justify-center gap-2 text-neutral-600 text-[10px] uppercase tracking-widest">
@@ -217,13 +218,11 @@ export default function Cart() {
         )}
       </div>
 
-   
       {isCheckoutOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
           
           <div 
             className="absolute inset-0 bg-black/80 backdrop-blur-md" 
-            
           ></div>
           
           <div className="relative z-10 bg-neutral-900 border border-neutral-800 rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200">
@@ -233,23 +232,19 @@ export default function Cart() {
                 <QrCode size={18} />
                 <span className="font-mono text-sm uppercase tracking-wider">Payment Gateway</span>
               </div>
-              {
-          check?
-          null
-          :
-              <button 
-                onClick={() => setIsCheckoutOpen(false)}
-                className="text-neutral-500 hover:text-white transition-colors"
-              >
-                <X size={20} />
-              </button>}
+              {check ? null : (
+                <button 
+                  onClick={() => setIsCheckoutOpen(false)}
+                  className="text-neutral-500 hover:text-white transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              )}
             </div>
 
-      
             <div className="p-8 flex flex-col items-center text-center">
               <h3 className="text-2xl text-white mb-1">Scan to Pay</h3>
               <p className="text-yellow-500 font-mono text-xl mb-6">₹{total}</p>
-
             
               <div className="p-4 bg-white rounded-xl mb-6 shadow-[0_0_30px_-10px_rgba(234,179,8,0.3)]">
                 <img 
@@ -259,32 +254,27 @@ export default function Cart() {
                 />
               </div>
 
-      
               <div className="space-y-4">
                   <div className="flex items-start gap-3 text-left p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
                     <CheckCircle2 className="text-green-500 shrink-0 mt-0.5" size={18} />
                     <div className="text-sm">
                       <p className="text-green-200 font-medium">Payment Processing</p>
-                      {
-                        check?
-                        null
-                        :<p className="text-green-500/80 leading-snug mt-1">You can close this page on payment. A confirmation mail will shortly reach you.</p>
-                      
-                      }
+                      {check ? null : (
+                        <p className="text-green-500/80 leading-snug mt-1">
+                          You can close this page on payment. A confirmation mail will shortly reach you.
+                        </p>
+                      )}
                       </div>
-                      
                    </div>
               </div>
             </div>
 
-        
             <div className="bg-neutral-950 p-4 text-center border-t border-white/5">
                <p className="text-xs text-neutral-600 font-mono uppercase">Merchant: {upiId}</p>
             </div>
           </div>
         </div>
       )}
-      
     </div>
   );
 }
