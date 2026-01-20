@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
-import axios from 'axios'
+import axios from 'axios';
 import {
   Plus,
   Minus,
@@ -17,27 +17,52 @@ import {
 export default function Cart() {
   const { cartItems, increaseQty, decreaseQty, clearCart } = useCart();
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [check, setCheck] = useState(true);
 
   const total = cartItems.reduce(
     (sum, i) => sum + parseInt(i.price.replace("₹", "")) * i.qty,
     0
   );
-  const [check,setCheck]=useState(true)
-  const upiId = 'megahertzrobotics@ybl'; 
-  const qrUrl = `https://quickchart.io/qr?text=upi%3A%2F%2Fpay%3Fpa%3D${upiId}%26am%3D${total}%26cu%3DINR&size=300`;
+
+  const upiId = 'megahertzrobotics@ybl';
+  const upiLink = `upi://pay?pa=${upiId}&pn=MegahertzRobotics&am=${total}&cu=INR`;
+  const qrUrl = `https://quickchart.io/qr?text=${encodeURIComponent(upiLink)}&size=300`;
 
   async function checkout() {
-    setIsCheckoutOpen(true);
-    //send a axios request to the merchant id 
-    let cart=localStorage.getItem('megahertz_cart')
-    let user=JSON.parse(localStorage.getItem('user'))
-    var response =await axios.post('https://mega-be.vercel.app/verify',{
-      email:user.email,
-      amount:total,
-      cart:cart
-    })
-    setCheck(false)
-    localStorage.removeItem('megahertz_cart')
+    const user = JSON.parse(localStorage.getItem('user'));
+    const cart = localStorage.getItem('megahertz_cart');
+
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+      try {
+        await axios.post('https://mega-be.vercel.app/verify', {
+          email: user?.email,
+          amount: total,
+          cart: cart
+        });
+        localStorage.removeItem('megahertz_cart');
+        
+        window.location.href = upiLink;
+      } catch (error) {
+        console.error("Order creation failed", error);
+        window.location.href = upiLink;
+      }
+    } else {
+      setIsCheckoutOpen(true);
+      
+      try {
+        await axios.post('https://mega-be.vercel.app/verify', {
+          email: user?.email,
+          amount: total,
+          cart: cart
+        });
+        setCheck(false);
+        localStorage.removeItem('megahertz_cart');
+      } catch (error) {
+        console.error("Verification failed", error);
+      }
+    }
   }
 
   return (
@@ -184,15 +209,12 @@ export default function Cart() {
    
       {isCheckoutOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
-        
+          
           <div 
             className="absolute inset-0 bg-black/80 backdrop-blur-md" 
             
           ></div>
-        
           
-          
-    
           <div className="relative z-10 bg-neutral-900 border border-neutral-800 rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200">
             
             <div className="bg-neutral-800/50 p-4 flex justify-between items-center border-b border-white/5">
@@ -226,9 +248,9 @@ export default function Cart() {
                 />
               </div>
 
-     
+      
               <div className="space-y-4">
-                 <div className="flex items-start gap-3 text-left p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
+                  <div className="flex items-start gap-3 text-left p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
                     <CheckCircle2 className="text-green-500 shrink-0 mt-0.5" size={18} />
                     <div className="text-sm">
                       <p className="text-green-200 font-medium">Payment Processing</p>
@@ -236,11 +258,11 @@ export default function Cart() {
                         check?
                         null
                         :<p className="text-green-500/80 leading-snug mt-1">You can close this page on payment. A confirmation mail will shortly reach you.</p>
-                    
+                      
                       }
                       </div>
                       
-                 </div>
+                   </div>
               </div>
             </div>
 
@@ -252,7 +274,6 @@ export default function Cart() {
         </div>
       )}
       
-
     </div>
   );
 }
