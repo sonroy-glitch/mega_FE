@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
 import axios from 'axios';
+import {CircleLoader} from 'react-spinners' 
 import {
   Plus,
   Minus,
