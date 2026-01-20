@@ -30,7 +30,7 @@ export default function Cart() {
   const qrUrl = `https://quickchart.io/qr?text=${encodeURIComponent(upiLink)}&size=300`;
 
   async function checkout() {
-    setPaymentLoader(True)
+    setPaymentLoader(true)
     const user = JSON.parse(localStorage.getItem('user'));
     const cart = localStorage.getItem('megahertz_cart');
 
@@ -50,7 +50,7 @@ export default function Cart() {
         console.error("Order creation failed", error);
         window.location.href = upiLink;
       }
-      setPaymentLoader(False)
+      setPaymentLoader(false)
     } else {
       setIsCheckoutOpen(true);
       
@@ -65,7 +65,7 @@ export default function Cart() {
       } catch (error) {
         console.error("Verification failed", error);
       }
-      setPaymentLoader(False)
+      setPaymentLoader(false)
     }
   }
 
