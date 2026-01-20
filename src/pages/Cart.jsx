@@ -24,12 +24,13 @@ export default function Cart() {
     (sum, i) => sum + parseInt(i.price.replace("₹", "")) * i.qty,
     0
   );
-
+  const [paymentLoader,setPaymentLoader]=useState(False)
   const upiId = 'megahertzrobotics@ybl';
   const upiLink = `upi://pay?pa=${upiId}&pn=MegahertzRobotics&am=${total}&cu=INR`;
   const qrUrl = `https://quickchart.io/qr?text=${encodeURIComponent(upiLink)}&size=300`;
 
   async function checkout() {
+    setPaymentLoader(True)
     const user = JSON.parse(localStorage.getItem('user'));
     const cart = localStorage.getItem('megahertz_cart');
 
@@ -49,6 +50,7 @@ export default function Cart() {
         console.error("Order creation failed", error);
         window.location.href = upiLink;
       }
+      setPaymentLoader(False)
     } else {
       setIsCheckoutOpen(true);
       
@@ -63,6 +65,7 @@ export default function Cart() {
       } catch (error) {
         console.error("Verification failed", error);
       }
+      setPaymentLoader(False)
     }
   }
 
@@ -186,13 +189,20 @@ export default function Cart() {
                   className="w-full group relative px-6 py-4 bg-yellow-500 text-black uppercase tracking-wider rounded-xl overflow-hidden hover:shadow-[0_0_20px_-5px_rgba(234,179,8,0.5)] transition-all duration-300" 
                   onClick={checkout}
                 >
-                  <span className="relative z-10 flex items-center justify-center gap-2">
+                  {
+            paymentLoader?
+            <CircleLoader size={20}/>:
+               <span className="relative z-10 flex items-center justify-center gap-2">
                     Checkout Securely{" "}
                     <ArrowRight
                       size={18}
                       className="group-hover:translate-x-1 transition-transform"
                     />
                   </span>
+          }
+          
+
+                 
 
                   <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 </button>
