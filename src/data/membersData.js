@@ -17,7 +17,7 @@ export const members = [
     name: "Laganjeet Jena",
     role: "Co-Founder",
     quote:
-      "Nudes Chahiye?",
+      "At Megahertz Robotics, we're shaping the future with cutting-edge robotics and electronics innovations.",
     image: m1,
     linkedin: "https://www.linkedin.com/in/laganjeetjena/",
   },
