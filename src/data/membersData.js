@@ -17,7 +17,7 @@ export const members = [
     name: "Laganjeet Jena",
     role: "Co-Founder",
     quote:
-      "At Megahertz Robotics, we're shaping the future with cutting-edge robotics and electronics innovations.",
+      "Nudes Chahiye?",
     image: m1,
     linkedin: "https://www.linkedin.com/in/laganjeetjena/",
   },
@@ -43,7 +43,7 @@ export const members = [
   {
     id: 5,
     name: "Sujal Krishna",
-    role: "Logistics Head",
+    role: "Co-Founder",
     quote:
       "Ensuring efficient delivery and support for every project, every time.",
     image: m5,
@@ -52,7 +52,7 @@ export const members = [
   {
     id: 6,
     name: "Som Raj",
-    role: "Finance",
+    role: "Member",
     quote:
       "Managing finances responsibly to sustain innovation and long-term growth.",
     image: m6,
