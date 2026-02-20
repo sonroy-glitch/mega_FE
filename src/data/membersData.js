@@ -80,7 +80,7 @@ export const members = [
     name: "Tanmay Das",
     role: "Member",
     quote:
-      "Mai RANDI Hoon.",
+      "Let's build something Rapchik.",
     image: m9,
     linkedin:
       "https://www.linkedin.com/in/tanmoy-das-336234330/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
