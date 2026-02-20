@@ -38,7 +38,7 @@ export default function AppBar() {
             onClick={() => go("/about")}
             className="cursor-pointer text-white hover:text-blue-500 transition-colors"
           >
-            ABOUT
+            OUR TEAM
           </span>
           
           <button
