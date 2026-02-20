@@ -27,7 +27,7 @@ const HeroSection = () => {
               {/* <button className="rounded-md border border-white px-6 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-black" onClick={()=>navigate('/store')}>
                 Buy Products
               </button> */}
-              <div className="rounded-md px-6  py-3 text-sm font-semibold text-white transition hover:bg-slate-200 hover:text-black" >
+              <div className="rounded-md px-6  py-3 text-sm font-semibold text-white transition hover:bg-slate-500 hover:text-black" >
                 A technical driven student community that builds competitive robots and tackles real-world challenges while actively participating in national and international tech events. 
               </div>
             </div>
