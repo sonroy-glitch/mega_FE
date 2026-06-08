@@ -10,12 +10,13 @@ import m9 from "../assets/members/m9.jpeg";
 import m10 from "../assets/members/m10.jpeg";
 import m11 from "../assets/members/m11.jpeg";
 import m12 from "../assets/members/m12.jpeg";
+import m13 from "../assets/members/m13.jpeg";
 
 export const members = [
   {
     id: 1,
     name: "Laganjeet Jena",
-    role: "Co-Founder",
+    role: "Co-Founder & CEO",
     quote:
       "At Megahertz Robotics, we're shaping the future with cutting-edge robotics and electronics innovations.",
     image: m1,
@@ -24,7 +25,7 @@ export const members = [
   {
     id: 2,
     name: "Omm Sanjog Barik",
-    role: "Co-Founder",
+    role: "Co-Founder & CFO",
     quote:
       "Driving technological excellence to create robotics solutions that redefine industries.",
     image: m2,
@@ -34,16 +35,25 @@ export const members = [
   {
     id: 3,
     name: "Amrutanshu Nanda",
-    role: "Co-Founder",
+    role: "Co-Founder & CFO",
     quote:
       "We strategically manage resources to fuel Megahertz Robotics’ growth and innovation.",
     image: m3,
     linkedin: "https://www.linkedin.com/in/amrutanshu-nanda/",
   },
   {
+    id: 13,
+    name: "D Niharika",
+    role: "Lead of Software Development",
+    quote:
+      "Together, we innovate, collaborate, and push the boundaries of robotics and technology.",
+    image: m13,
+    linkedin: "https://www.linkedin.com/in/d-niharika-1b88b1322/",
+  },
+  {
     id: 5,
     name: "Sujal Krishna",
-    role: "Co-Founder",
+    role: "Member",
     quote:
       "Ensuring efficient delivery and support for every project, every time.",
     image: m5,
@@ -79,8 +89,7 @@ export const members = [
     id: 9,
     name: "Tanmay Das",
     role: "Member",
-    quote:
-      "Let's build something Rapchik.",
+    quote: "Let's build something Rapchik.",
     image: m9,
     linkedin:
       "https://www.linkedin.com/in/tanmoy-das-336234330/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
