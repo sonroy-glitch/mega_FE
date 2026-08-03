@@ -25,7 +25,7 @@ export const members = [
   {
     id: 2,
     name: "Omm Sanjog Barik",
-    role: "Co-Founder & CFO",
+    role: "Co-Founder & CTO",
     quote:
       "Driving technological excellence to create robotics solutions that redefine industries.",
     image: m2,
@@ -53,7 +53,7 @@ export const members = [
   {
     id: 5,
     name: "Sujal Krishna",
-    role: "Member",
+    role: "Co-Founder & COO",
     quote:
       "Ensuring efficient delivery and support for every project, every time.",
     image: m5,
