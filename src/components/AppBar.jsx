@@ -40,7 +40,14 @@ export default function AppBar() {
           >
             OUR TEAM
           </span>
-          
+
+          <span
+            onClick={() => go("/projects")}
+            className="cursor-pointer text-white hover:text-blue-500 transition-colors"
+          >
+            PROJECTS
+          </span>
+
           <button
             onClick={() => go("/store")}
             className="relative px-8 py-2 text-sm uppercase tracking-widest font-semibold text-black cursor-pointer"
@@ -86,6 +93,13 @@ export default function AppBar() {
               className="text-white hover:text-blue-500 transition"
             >
               ABOUT
+            </span>
+
+            <span
+              onClick={() => go("/projects")}
+              className="text-white hover:text-blue-500 transition"
+            >
+              PROJECTS
             </span>
 
             <button
